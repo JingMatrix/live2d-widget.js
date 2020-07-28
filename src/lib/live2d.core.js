@@ -3130,29 +3130,28 @@ Y.prototype.setLoopFadeIn = function(aH) {
     this.loopFadeIn = aH;
 }
 ;
-function aE() {
+class aE {
+  constructor() {
     this._$P = new Float32Array(100);
     this.size = 0;
-}
-aE.prototype.clear = function() {
+  }
+  clear() {
     this.size = 0;
-}
-;
-aE.prototype.add = function(aI) {
+  }
+  add(aI) {
     if (this._$P.length <= this.size) {
-        var aH = new Float32Array(this.size * 2);
-        P._$jT(this._$P, 0, aH, 0, this.size);
-        this._$P = aH;
+      var aH = new Float32Array(this.size * 2);
+      P._$jT(this._$P, 0, aH, 0, this.size);
+      this._$P = aH;
     }
     this._$P[this.size++] = aI;
-}
-;
-aE.prototype._$BL = function() {
+  }
+  _$BL() {
     var aH = new Float32Array(this.size);
     P._$jT(this._$P, 0, aH, 0, this.size);
     return aH;
+  }
 }
-;
 function t() {
     this._$4P = null;
     this._$I0 = null;
@@ -4868,10 +4867,10 @@ ao.prototype.setLoopFadeIn = function(aH) {
     this.loopFadeIn = aH;
 }
 ;
-function aE() {
-    this._$P = new Float32Array(100);
-    this.size = 0;
-}
+// class aE {
+//     this._$P = new Float32Array(100);
+//     this.size = 0;
+// }
 aE.prototype.clear = function() {
     this.size = 0;
 }
@@ -4891,11 +4890,11 @@ aE.prototype._$BL = function() {
     return aH;
 }
 ;
-function t() {
-    this._$4P = null;
-    this._$I0 = null;
-    this._$RP = null;
-}
+// function t() {
+//     this._$4P = null;
+//     this._$I0 = null;
+//     this._$RP = null;
+// }
 t._$Fr = 0;
 t._$hs = 1;
 t._$ws = 100;

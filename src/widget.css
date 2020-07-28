@@ -1,0 +1,75 @@
+#live2d-toggle {
+	background-color: #fa0;
+	border-radius: 5px;
+	bottom: 66px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 12px;
+	left: 0;
+	margin-left: -100px;
+	padding: 5px 2px 5px 5px;
+	position: fixed;
+	transition: margin-left 1s;
+	width: 60px;
+	writing-mode: vertical-rl;
+}
+
+#live2d-toggle.live2d-toggle-active {
+	margin-left: -50px;
+}
+
+#live2d-toggle.live2d-toggle-active:hover {
+	margin-left: -30px;
+}
+
+#live2d-widget {
+	bottom: -1000px;
+	/* left: 0; */
+	/* line-height: 0; */
+	/* margin-bottom: -10px; */
+	/* position: fixed; */
+	transform: translateY(3px);
+	transition: transform .3s ease-in-out, bottom 3s ease-in-out;
+	/* z-index: 1; */
+}
+
+
+#live2d-widget:hover {
+	transform: translateY(0px)
+}
+
+.live2d-widget-dialog-container span {
+	color: #0099cc;
+}
+
+
+#live2d-widget #live2dcanvas:active {
+	cursor: grabbing;
+}
+
+#live2d-tool {
+	color: #aaa;
+	opacity: 0;
+	position: absolute;
+	right: -30px;
+	top: 110px;
+	transition: opacity 1s;
+}
+
+#live2d-widget:hover #live2d-tool {
+	opacity: 1;
+}
+
+#live2d-tool i {
+	color: #7b8c9d;
+	cursor: pointer;
+	display: block;
+	line-height: 50px;
+	font-size: x-large;
+	text-align: center;
+	transition: color .3s;
+}
+
+#live2d-tool i:hover {
+	color: #0684bd; /* #34495e */
+}

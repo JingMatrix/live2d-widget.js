@@ -9,7 +9,7 @@
 
 const defaultConfig = {
   model: {
-    jsonPath: 'https://unpkg.com/live2d-widget-model-shizuku@latest/assets/shizuku.model.json',
+    jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@latest/assets/shizuku.model.json',
     scale: 1,
   },
   display: {
@@ -17,8 +17,8 @@ const defaultConfig = {
     width: 200,
     height: 400,
     position: 'right',
-    hOffset: 0,
-    vOffset: -20,
+    hOffset: 150,
+    vOffset: -50,
   },
   mobile: {
     show: true,
@@ -36,8 +36,11 @@ const defaultConfig = {
     border: false
   },
   dialog: {
-    enable: false,
-    script: null
+    enable: true,
+    script: {
+      'tap body': ["干嘛呢你，快把手拿开～～", "鼠…鼠标放错地方了！", "你要干嘛呀？", "喵喵喵？", "怕怕(ノ≧∇≦)ノ", "非礼呀！救命！", "这样的话，只能使用武力了！", "我要生气了哦", "不要动手动脚的！", "真…真的是不知羞耻！", "Hentai！"],
+      'tap face': ['人家已经不是小孩子了！', '原来你喜欢我啊！', '我猜你应该喜欢我，对吗？']
+    }
   }
 }
 

@@ -9,19 +9,20 @@ const isProd = e => e === 'prod';
 module.exports = env => {return{
 
   entry: [
-    'core-js/fn/promise',
-    './src/wpPublicPath.js',
-    './src/index.js',
+    "core-js/modules/es.promise",
+    "core-js/modules/es.array.iterator",
+    // './src/wpPublicPath.js',
+    './src/live2d.js',
   ],
 
   output: {
-    filename: 'L2Dwidget.min.js',
+    filename: 'L2DApp.min.js',
     // YOU MUST INSTALL babel-plugin-syntax-dynamic-import FIRST TO ENABLE CODE SPLITTING!
-    chunkFilename: 'L2Dwidget.[id].min.js',
+    chunkFilename: 'L2DApp.[id].min.js',
     library: 'L2Dwidget',
     libraryExport: 'L2Dwidget',
     libraryTarget: 'var',
-    path: path.resolve(__dirname, 'lib'),
+    path: path.resolve("/home/jing/Documents/Project/blog/assets/js/live2d-widget"),
     pathinfo: (isProd(env) ? false : true),
   },
 
@@ -73,11 +74,28 @@ module.exports = env => {return{
 
   module: {
     rules: [
-      {test: /\.js$/,
+      // {test: /\.js$/,
+      //   include: path.resolve(__dirname, "src"),
+      //   use: [{
+      //     loader: 'babel-loader',
+      //   }],
+      // },
+      {
+        test: /\.m?js$/,
         include: path.resolve(__dirname, "src"),
-        use: [{
+        use: {
           loader: 'babel-loader',
-        }],
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
       },
       {test: /\.html$/,
         use: [{

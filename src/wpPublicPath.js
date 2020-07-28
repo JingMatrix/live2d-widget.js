@@ -95,11 +95,11 @@ function getCurrentPath(){
 
 // expose the path to the global,
 // and wp will finish the following work
-__webpack_public_path__ = getCurrentPath().replace(/[^/\\\\]+$/, '');
+let __webpack_public_path__ = getCurrentPath().replace(/[^/\\\\]+$/, '');
 if (process.env.NODE_ENV === 'development'){
   console.log(`Live2Dwidget: publicPath: ${__webpack_public_path__}`);
 }
 
 export {
-  getCurrentPath,
+  __webpack_public_path__
 }

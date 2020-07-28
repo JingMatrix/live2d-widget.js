@@ -5,7 +5,7 @@
 
 import { config } from './config/configMgr';
 import { L2Dwidget } from './index';
-import { createDialogElement } from './dialog';
+import { createDialogElement } from './dialog/index';
 
 /**
  * The current WebGL element

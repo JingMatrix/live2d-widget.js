@@ -1,6 +1,6 @@
 import { EventEmitter } from '../utils/EventEmitter';
 
-class ScriptEngine extends EventEmitter {
+export class ScriptEngine extends EventEmitter {
   constructor(cb) {
     super();
     this.output = cb;
@@ -9,23 +9,23 @@ class ScriptEngine extends EventEmitter {
   }
 
   /**
-   * @param {string} name 
-   * @param {(...args:string[], cb: () => void, engine: ScriptEngine) => void} func 
+   * @param {string} name
+   * @param {(...args:string[], cb: () => void, engine: ScriptEngine) => void} func
    */
   registerEmitter(name, func) {
     this.emitters.push({
       name: name.toLowerCase(), func
-    })
+    });
   }
 
   /**
-   * @param {string} name 
+   * @param {string} name
    * @param {(...args:string[]) => Promise|string} func
    */
   registerVariable(name, func) {
     this.variables.push({
       name: name.toLowerCase(), func
-    })
+    });
   }
 
   /**
@@ -34,7 +34,7 @@ class ScriptEngine extends EventEmitter {
   matchEmitter(when) {
     return this.emitters.find((emitter) => {
       return when.toLowerCase().startsWith(emitter.name);
-    })
+    });
   }
 
   /**
@@ -43,7 +43,7 @@ class ScriptEngine extends EventEmitter {
   matchVariable(name) {
     return this.variables.find((variable) => {
       return name.toLowerCase() === variable.name;
-    })
+    });
   }
 
   /**
@@ -58,7 +58,7 @@ class ScriptEngine extends EventEmitter {
     let match = null;
     const matches = [];
     while (match = re.exec(sourceText), match !== null) {
-      matches.push(match)
+      matches.push(match);
     }
 
     const promises = matches.map((match) => {
@@ -71,16 +71,16 @@ class ScriptEngine extends EventEmitter {
       return resPromise.then((str) => {
         text = text.replace(match[0], str);
         return str;
-      })
+      });
     });
     return Promise.all(promises).then(() => {
-      return text
+      return text;
     });
   }
 
   /**
-   * @param {string} when 
-   * @param {string} text 
+   * @param {string} when
+   * @param {string} text
    */
   run(when, text) {
     const whenStr = when.trim().toLowerCase();
@@ -96,6 +96,7 @@ class ScriptEngine extends EventEmitter {
   }
 }
 
-module.exports = {
-  ScriptEngine
-}
+// module.exports = {
+//   ScriptEngine
+// };
+

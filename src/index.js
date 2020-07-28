@@ -14,6 +14,8 @@
 import device from 'current-device';
 import { config, configApplyer }from './config/configMgr';
 import { EventEmitter } from './utils/EventEmitter';
+import { alertText } from './dialog/index'
+import { cDefine } from './cDefine';
 
 if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
@@ -65,7 +67,16 @@ class L2Dwidget extends EventEmitter {
     });
   }
 
+    useModel(jsonPath='https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@latest/assets/shizuku.model.json', scale =1) {
+    this.coreApp.renderModel(jsonPath, scale);
+  }
 
+  say(text, timeout) {
+    alertText(text, timeout);
+    if (cDefine.DEBUG_LOG) {
+      console.log("User defined text")
+    }
+  }
 /**
  * Capture current frame to png file {@link captureFrame}
  * @param  {Function} callback The callback function which will receive the current frame

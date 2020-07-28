@@ -50,7 +50,10 @@ function theRealInit (){
 
   createElement();
   initEvent();
+  return renderModel();
+}
 
+function renderModel(configPath=config.model.jsonPath, scale=1){
   live2DMgr = new cManager(L2Dwidget)
   dragMgr = new L2DTargetPoint();
   let rect = currCanvas.getBoundingClientRect();
@@ -69,7 +72,7 @@ function theRealInit (){
     cDefine.VIEW_LOGICAL_MAX_BOTTOM,
     cDefine.VIEW_LOGICAL_MAX_TOP);
 
-  modelScaling(device.mobile() && config.mobile.scale || config.model.scale)
+  modelScaling(scale * (device.mobile() && config.mobile.scale || config.model.scale))
 
   projMatrix = new L2DMatrix44();
   projMatrix.multScale(1, (rect.width / rect.height));
@@ -81,12 +84,11 @@ function theRealInit (){
 
   Live2D.setGL(currWebGL);
   currWebGL.clearColor(0.0, 0.0, 0.0, 0.0);
-  changeModel(config.model.jsonPath);
+  changeModel(configPath);
   startDraw();
 
   return live2DMgr;
 }
-
 /**
  * Capture current frame to png file
  * @param  {Function} callback The callback function which will receive the current frame
@@ -431,4 +433,5 @@ function transformScreenY(deviceY)
 export{
   theRealInit,
   captureFrame,
+  renderModel
 }

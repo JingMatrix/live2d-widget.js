@@ -3,8 +3,9 @@ import { ScriptEngine } from './script';
 import { L2Dwidget } from '../index';
 import { everyEmitter } from './emitter/every';
 import { hoverEmitter } from './emitter/hover';
-import { tapbodyEmitter } from './emitter/tapbody'; 
-import { tapfaceEmitter } from './emitter/tapface'; 
+import { clickEmitter } from './emitter/click';
+import { tapbodyEmitter } from './emitter/tapbody';
+import { tapfaceEmitter } from './emitter/tapface';
 import { hitokotoVariable } from './variable/hitokoto';
 
 const dialogStyle = document.createElement('style');
@@ -48,7 +49,7 @@ let containerElement,dialogElement,closeTimer;
  * 创建对话框元素
  * @param {HTMLElement} root 位置
  */
-function createDialogElement(root) {
+export function createDialogElement(root) {
   containerElement = document.createElement('div');
   containerElement.className = 'live2d-widget-dialog-container';
   containerElement.style.transform = `scale(${config.display.width / 250})`;
@@ -58,11 +59,12 @@ function createDialogElement(root) {
   root.appendChild(containerElement);
 
   L2Dwidget.emit('create-dialog', containerElement);
-  
+
   if (config.dialog.script) {
     const scriptEngine = new ScriptEngine(alertText);
     scriptEngine.registerEmitter('every', everyEmitter(scriptEngine));
     scriptEngine.registerEmitter('hover', hoverEmitter());
+    scriptEngine.registerEmitter('click', clickEmitter());
     scriptEngine.registerEmitter('tap body', tapbodyEmitter(L2Dwidget));
     scriptEngine.registerEmitter('tap face', tapfaceEmitter(L2Dwidget));
 
@@ -81,15 +83,15 @@ function hiddenDialog() {
   dialogElement.style.opacity = 0;
 }
 
-function alertText(text) {
+export function alertText(text, timeout = 5000) {
   displayDialog();
-  dialogElement.innerText = text;
+  dialogElement.innerHTML = text;
   clearTimeout(closeTimer);
   closeTimer = setTimeout(function () {
     hiddenDialog();
-  }, 5000);
+  }, timeout);
 }
 
-module.exports = {
-  createDialogElement, displayDialog, hiddenDialog, alertText
-};
+// module.exports = {
+//   createDialogElement, displayDialog, hiddenDialog, alertText
+// };

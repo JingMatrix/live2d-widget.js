@@ -31,5 +31,7 @@ export const cDefine = {
   // above are the index to the hit areas in model.json
   // #43
   HIT_AREA_HEAD : "head",
-  HIT_AREA_BODY : "body"
+  HIT_AREA_BODY : "body",
+  HIT_AREAS_CUSTOM: "hit_areas_custom",
+  // DEBUG_LOG: 1
 };

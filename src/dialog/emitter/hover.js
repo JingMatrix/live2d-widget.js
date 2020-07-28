@@ -3,8 +3,11 @@ function hoverEmitter() {
     document.querySelectorAll(args[0]).forEach(element => {
       element.addEventListener('mouseenter', () => {
         cb();
-      })
-    })
+      });
+      element.addEventListener('touchstart', () => {
+        cb();
+      });
+    });
   };
 }
 
